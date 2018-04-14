@@ -1,0 +1,40 @@
+{
+  "name": "@username/redux-action-synchronizer",
+  "version": "0.1.0",
+  "description": "A redux middleware for synchronizing actions between browser tabs",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest src",
+    "lint": "node_modules/.bin/eslint src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pawelmaczka/redux-action-synchronizer.git"
+  },
+  "keywords": [
+    "redux",
+    "react",
+    "crosstab",
+    "sync",
+    "middleware",
+    "localstorage",
+    "tabs"
+  ],
+  "author": "Pawel Maczka",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pawelmaczka/redux-action-synchronizer/issues"
+  },
+  "homepage": "https://github.com/pawelmaczka/redux-action-synchronizer#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-jest": "^22.4.3",
+    "babel-preset-env": "^1.6.1",
+    "eslint": "^4.19.1",
+    "eslint-config-brainhub": "^1.8.0",
+    "jest": "^22.4.3",
+    "npm": "^5.8.0",
+    "regenerator-runtime": "^0.11.1"
+  }
+}
