@@ -3,16 +3,16 @@ import { join } from 'path';
 const include = join(__dirname, 'src');
 
 export default {
-  entry: './src/syncStorage',
+  entry: './src/index',
   output: {
-    path: join(__dirname, 'dist'),
+    path: join(__dirname, 'lib'),
     libraryTarget: 'umd',
-    library: 'reduxActionSynchronizer'
+    library: 'reduxActionSynchronizer',
   },
   devtool: 'source-map',
   module: {
-    loaders: [
-      { test: /\.js$/, loader: 'babel-loader', include }
-    ]
-  }
-}
+    rules: [
+      { test: /\.js$/, loader: 'babel-loader', include },
+    ],
+  },
+};
