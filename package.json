@@ -23,7 +23,7 @@
     "localstorage",
     "tabs"
   ],
-  "author": "Pawel Maczka",
+  "author": "Paweł Mączka",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/pawelmaczka/redux-action-synchronizer/issues"
