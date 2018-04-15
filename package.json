@@ -2,10 +2,13 @@
   "name": "@username/redux-action-synchronizer",
   "version": "0.1.0",
   "description": "A redux middleware for synchronizing actions between browser tabs",
-  "main": "index.js",
+  "main": "lib/reduxActionSynchronizer",
   "scripts": {
-    "test": "jest src",
-    "lint": "node_modules/.bin/eslint src"
+    "test": "jest src --no-cache",
+    "test:watch": "jest src --watch --no-cache",
+    "lint": "node_modules/.bin/eslint src",
+    "build": "webpack --output-filename reduxActionSynchronizer.js",
+    "prebuild": "rimraf ./lib"
   },
   "repository": {
     "type": "git",
@@ -30,11 +33,16 @@
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-jest": "^22.4.3",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "eslint": "^4.19.1",
     "eslint-config-brainhub": "^1.8.0",
     "jest": "^22.4.3",
     "npm": "^5.8.0",
-    "regenerator-runtime": "^0.11.1"
+    "regenerator-runtime": "^0.11.1",
+    "rimraf": "^2.6.2",
+    "webpack": "^4.5.0",
+    "webpack-cli": "^2.0.14"
   }
 }
