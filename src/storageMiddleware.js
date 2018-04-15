@@ -4,9 +4,9 @@ import {
   IS_REMOTE,
 } from './constants';
 
-const uuid = () => btoa(`${Date.now()}-${Math.random()}-${Math.random()}`);
+export const uuid = () => btoa(`${Date.now()}-${Math.random()}-${Math.random()}`);
 
-function syncAction(action) {
+export function syncAction(action) {
   localStorage.setItem(ACTION_STORAGE_KEY, JSON.stringify(action));
   localStorage.setItem(SYNC_MESSAGE_KEY, uuid());
 }

@@ -1,3 +1,19 @@
+machine:
+
+  timezone:
+    Europe/Warsaw
+
+  node:
+    version: 9.5.0
+
+  environment:
+    NODE_ENV: 'production'
+
+dependencies:
+
+  override:
+    - npm --production=false install
+
 test:
   override:
     - npm run lint
