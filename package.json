@@ -5,7 +5,7 @@
   "main": "lib/reduxActionSynchronizer",
   "scripts": {
     "test": "NODE_PATH=src jest test --no-cache",
-    "test:watch": "NODE_PATH=src jest src --watch --no-cache",
+    "test:watch": "NODE_PATH=src jest test --watch --no-cache",
     "lint": "node_modules/.bin/eslint src",
     "build": "webpack --output-filename reduxActionSynchronizer.js",
     "prebuild": "rimraf ./lib"
