@@ -14,6 +14,6 @@ export const storageEventListener = store => event => {
   }
 };
 
-export default function createStorageEventListener(store) {
-  window.addEventListener('storage', storageEventListener(store));
+export default function createStorageEventListener(store, listener = storageEventListener) {
+  window.addEventListener('storage', listener(store));
 }

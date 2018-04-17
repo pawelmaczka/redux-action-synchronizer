@@ -197,4 +197,29 @@ describe('syncToLocalStorage', () => {
     expect(syncAction.mock.calls[0][0]).toBe(whitelistedAction1);
     expect(syncAction.mock.calls[1][0]).toBe(whitelistedAction2);
   });
+
+  it('does not synchronize anything if whitelist array is empty', () => {
+    const action1 = {
+      type: 'action-1',
+      payload: 'payload-1',
+    };
+    const action2 = {
+      type: 'action-2',
+      payload: 'action-2',
+    };
+    const action = {
+      type: 'test-action',
+      payload: 'test-payload',
+    };
+
+    const middleware = createStorageMiddleware({
+      syncAction,
+      whitelist: [],
+    })()(next);
+
+    middleware(action1);
+    middleware(action);
+    middleware(action2);
+    expect(syncAction.mock.calls.length).toBe(0)
+  });
 });

@@ -18,9 +18,7 @@ export default function createStorageMiddleware({
 } = {}) {
   return () => next => action => {
     if (!action[IS_REMOTE]) {
-      if (!!whitelist
-        && whitelist.length
-        && whitelist.includes(action.type)
+      if (!!whitelist && whitelist.includes(action.type)
       ) {
         syncAction(action);
       } else if ((!whitelist || !whitelist.length)
