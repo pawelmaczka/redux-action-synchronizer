@@ -21,9 +21,8 @@ export default function createStorageMiddleware({
       if (!!whitelist && whitelist.includes(action.type)
       ) {
         syncAction(action);
-      } else if ((!whitelist || !whitelist.length)
+      } else if (!whitelist
         && !!blacklist
-        && blacklist.length
         && !blacklist.includes(action.type)
       ) {
         syncAction(action);
