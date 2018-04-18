@@ -46,7 +46,7 @@ createSyncActionEventListener(store);
 
 ## Synchronizing only selected actions
 
-`syncActionMiddleware` is able to synchronize only selected actions. To synchronize only whitelisted actions, pass in to `createSyncActionMiddleware` a config object with whitelist array of action types that should be synchronized.
+`syncActionMiddleware` is able to synchronize only selected actions. To synchronize only whitelisted actions, pass in to `createSyncActionMiddleware` a config object with whitelist array of action types that should be synchronized. If whitelist is an empty array it will not synchronize any action.
 
 ```javascript
 const config = {
@@ -74,4 +74,4 @@ const config = {
 const syncActionMiddleware = createSyncActionMiddleware(config);
 ```
 
-Passing both the `whitelist` and `blacklist` will make `syncActionMiddleware` ignore the blacklist and synchronize only actions included in the `whitelist`.
+Passing both the `whitelist` and `blacklist` will make `syncActionMiddleware` synchronize only actions that are on the whitelist but not on the blacklist.
