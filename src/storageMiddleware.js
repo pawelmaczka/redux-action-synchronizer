@@ -18,16 +18,24 @@ export default function createStorageMiddleware({
 } = {}) {
   return () => next => action => {
     if (!action[IS_REMOTE]) {
-      if (!!whitelist && whitelist.includes(action.type)
-      ) {
-        syncAction(action);
-      } else if (!whitelist
-        && !!blacklist
-        && !blacklist.includes(action.type)
-      ) {
-        syncAction(action);
-      } else if (!blacklist && !whitelist) {
-        syncAction(action);
+      switch (true) {
+        case (!blacklist && whitelist && whitelist.includes(action.type)): {
+          syncAction(action);
+          break;
+        }
+        case (blacklist && whitelist && whitelist.includes(action.type) && !blacklist.includes(action.type)): {
+          syncAction(action);
+          break;
+        }
+        case (!whitelist && blacklist && !blacklist.includes(action.type)): {
+          syncAction(action);
+          break;
+        }
+        case (!whitelist && !blacklist): {
+          syncAction(action);
+          break;
+        }
+        default: break;
       }
     }
     next(action);

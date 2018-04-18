@@ -170,32 +170,58 @@ describe('syncToLocalStorage', () => {
     expect(syncAction.mock.calls[0][0]).toBe(action);
   });
 
-  it('ignores blacklist if there is whitelist defined', () => {
-    const whitelistedAction1 = {
-      type: 'whitelistedAction-1',
-      payload: 'whitelistedPayload-1',
+  it('does not synchronize blacklisted action if it is also on the whitelist', () => {
+    const blacklistedAction = {
+      type: 'blacklistedAction',
+      payload: 'blacklistedPayload',
     };
-    const whitelistedAction2 = {
-      type: 'whitelistedAction-2',
-      payload: 'whitelistedPayload-2',
+    const whitelistedAction = {
+      type: 'whitelistedAction',
+      payload: 'whitelistedPayload',
     };
-    const action = {
-      type: 'test-action',
+    const whitelistedAndBlacklistedAction = {
+      type: 'test-whitelistedAndBlacklistedAction',
       payload: 'test-payload',
     };
 
     const middleware = createStorageMiddleware({
       syncAction,
-      whitelist: [whitelistedAction1.type, whitelistedAction2.type],
-      blacklist: [whitelistedAction1.type],
+      whitelist: [whitelistedAndBlacklistedAction.type, whitelistedAction.type],
+      blacklist: [blacklistedAction.type, whitelistedAndBlacklistedAction.type],
     })()(next);
 
-    middleware(whitelistedAction1);
+    middleware(blacklistedAction);
+    middleware(whitelistedAndBlacklistedAction);
+    middleware(whitelistedAction);
+    expect(syncAction.mock.calls.length).toBe(1);
+    expect(syncAction.mock.calls[0][0]).toBe(whitelistedAction);
+  });
+
+  it('does not synchronize action not included in whitelist if there are both whitelist and blacklist specified', () => {
+    const action = {
+      type: 'action',
+      payload: 'payload',
+    };
+    const whitelistedAction = {
+      type: 'whitelistedAction',
+      payload: 'whitelistedPayload',
+    };
+    const blacklistedAction = {
+      type: 'blacklistedAction',
+      payload: 'payload',
+    };
+
+    const middleware = createStorageMiddleware({
+      syncAction,
+      whitelist: [whitelistedAction.type],
+      blacklist: [blacklistedAction.type],
+    })()(next);
+
     middleware(action);
-    middleware(whitelistedAction2);
-    expect(syncAction.mock.calls.length).toBe(2);
-    expect(syncAction.mock.calls[0][0]).toBe(whitelistedAction1);
-    expect(syncAction.mock.calls[1][0]).toBe(whitelistedAction2);
+    middleware(whitelistedAction);
+    middleware(blacklistedAction);
+    expect(syncAction.mock.calls.length).toBe(1);
+    expect(syncAction.mock.calls[0][0]).toBe(whitelistedAction);
   });
 
   it('does not synchronize anything if whitelist array is empty', () => {

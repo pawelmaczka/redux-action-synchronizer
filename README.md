@@ -74,4 +74,4 @@ const config = {
 const syncActionMiddleware = createSyncActionMiddleware(config);
 ```
 
-Passing both the `whitelist` and `blacklist` will make `syncActionMiddleware` ignore the blacklist and synchronize only actions included in the `whitelist`.
+Passing both the `whitelist` and `blacklist` will make `syncActionMiddleware` synchronize only actions that are on the whitelist but not on the blacklist.
