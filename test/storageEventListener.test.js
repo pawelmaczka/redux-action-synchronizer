@@ -1,7 +1,6 @@
 import createStorageEventListener, { storageEventListener } from '../src/storageEventListener';
 
 import {
-  ACTION_STORAGE_KEY,
   SYNC_MESSAGE_KEY,
   IS_REMOTE,
 } from '../src/constants';

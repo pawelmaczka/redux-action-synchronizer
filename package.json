@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest test --no-cache",
     "test:watch": "jest test --watch --no-cache",
-    "lint": "node_modules/.bin/eslint src",
+    "lint": "node_modules/.bin/eslint src test",
     "build": "webpack --output-filename reduxActionSynchronizer.js",
     "prebuild": "rimraf ./lib"
   },
