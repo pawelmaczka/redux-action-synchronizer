@@ -1,6 +1,6 @@
 {
   "name": "redux-action-synchronizer",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A redux middleware for synchronizing actions between browser tabs",
   "main": "lib/reduxActionSynchronizer",
   "scripts": {
