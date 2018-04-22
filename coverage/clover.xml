@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1524393762907" clover="3.2.0">
+  <project timestamp="1524393762907" name="All files">
+    <metrics statements="33" coveredstatements="33" conditionals="57" coveredconditionals="57" methods="16" coveredmethods="16" elements="106" coveredelements="106" complexity="0" loc="33" ncloc="33" packages="1" files="3" classes="3">
+      <file name="constants.js" path="/Users/Pawe/pawelmaczka/redux-action-synchronizer/src/constants.js">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="2" count="2" type="stmt"/>
+        <line num="3" count="2" type="stmt"/>
+      </file>
+      <file name="storageEventListener.js" path="/Users/Pawe/pawelmaczka/redux-action-synchronizer/src/storageEventListener.js">
+        <metrics statements="5" coveredstatements="5" conditionals="5" coveredconditionals="5" methods="3" coveredmethods="3"/>
+        <line num="7" count="3" type="stmt"/>
+        <line num="8" count="2" type="cond" truecount="4" falsecount="0"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="18" count="2" type="stmt"/>
+      </file>
+      <file name="storageMiddleware.js" path="/Users/Pawe/pawelmaczka/redux-action-synchronizer/src/storageMiddleware.js">
+        <metrics statements="25" coveredstatements="25" conditionals="52" coveredconditionals="52" methods="13" coveredmethods="13"/>
+        <line num="7" count="10" type="stmt"/>
+        <line num="10" count="4" type="stmt"/>
+        <line num="11" count="4" type="stmt"/>
+        <line num="15" count="39" type="cond" truecount="4" falsecount="0"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="19" count="38" type="cond" truecount="4" falsecount="0"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="23" count="37" type="cond" truecount="6" falsecount="0"/>
+        <line num="24" count="11" type="stmt"/>
+        <line num="27" count="26" type="cond" truecount="6" falsecount="0"/>
+        <line num="28" count="11" type="stmt"/>
+        <line num="32" count="18" type="stmt"/>
+        <line num="33" count="26" type="cond" truecount="2" falsecount="0"/>
+        <line num="41" count="39" type="stmt"/>
+        <line num="43" count="15" type="cond" truecount="2" falsecount="0"/>
+        <line num="44" count="15" type="cond" truecount="2" falsecount="0"/>
+        <line num="47" count="15" type="stmt"/>
+        <line num="48" count="35" type="cond" truecount="4" falsecount="0"/>
+        <line num="52" count="35" type="cond" truecount="4" falsecount="0"/>
+        <line num="56" count="35" type="cond" truecount="2" falsecount="0"/>
+        <line num="57" count="34" type="cond" truecount="5" falsecount="0"/>
+        <line num="62" count="15" type="stmt"/>
+        <line num="63" count="15" type="stmt"/>
+        <line num="64" count="19" type="stmt"/>
+        <line num="68" count="35" type="stmt"/>
+      </file>
+    </metrics>
+  </project>
+</coverage>

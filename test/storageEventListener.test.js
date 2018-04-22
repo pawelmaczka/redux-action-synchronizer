@@ -39,6 +39,14 @@ describe('createStorageEventListener', () => {
     expect(addEventListener.mock.calls[0].length).toBe(2);
     expect(addEventListener.mock.calls[0][0]).toBe('storage');
     expect(addEventListener.mock.calls[0][1]).toBeInstanceOf(Function);
+    expect(eventListener).toBeCalledWith(store);
+
+    addEventListener.mockReset();
+    createStorageEventListener(store);
+    expect(addEventListener.mock.calls.length).toBe(1);
+    expect(addEventListener.mock.calls[0].length).toBe(2);
+    expect(addEventListener.mock.calls[0][0]).toBe('storage');
+    expect(addEventListener.mock.calls[0][1]).toBeInstanceOf(Function);
   });
 });
 
