@@ -21,7 +21,7 @@ yarn add redux-action-synchronizer
 Import `createSyncActionMiddleware` and `createSyncActionEventListener` then create and add `syncActionMiddleware` to the list of redux middleware. After creating redux store pass it to `createSyncActionEventListener` to create event listener that will dispatch synchronized actions to it.
 
 ```javascript
-import { createSyncActionMiddleware,  createSyncActionEventListener } from 'redux-action-synchronizer'
+import { createSyncActionMiddleware,  createSyncActionEventListener } from 'redux-action-synchronizer';
 
 // creating syncActionMiddleware
 const syncActionMiddleware = createSyncActionMiddleware();
@@ -75,3 +75,28 @@ const syncActionMiddleware = createSyncActionMiddleware(config);
 ```
 
 Passing both the `whitelist` and `blacklist` will make `syncActionMiddleware` synchronize only actions that are on the whitelist but not on the blacklist.
+
+## Regular expressions in whitelist and blacklist
+
+It is possible to use regular expressions instead of strings to whitelist or blacklist action types. This approach may be very useful if you want to synchronize or not synchronize specific group of actions, for example synchronize all actions fired on successful api request:
+
+```javascript
+const config = {
+  whitelist: [
+    /.*_SUCCESS$/,
+  ]
+}
+```
+
+or synchronize all actions from a group but not actions that performs api calls:
+
+```javascript
+const config = {
+  whitelist: [
+    /^myActionGroup\/.*/,
+  ],
+  blacklist: [
+    /.*_REQUEST$/,
+  ],
+};
+```

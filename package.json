@@ -1,12 +1,12 @@
 {
   "name": "redux-action-synchronizer",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A redux middleware for synchronizing actions between browser tabs",
   "main": "lib/reduxActionSynchronizer",
   "scripts": {
-    "test": "jest test --no-cache",
-    "test:watch": "jest test --watch --no-cache",
-    "lint": "node_modules/.bin/eslint src",
+    "test": "jest test --no-cache --coverage",
+    "test:watch": "jest test --watch --no-cache --coverage",
+    "lint": "node_modules/.bin/eslint src test",
     "build": "webpack --output-filename reduxActionSynchronizer.js",
     "prebuild": "rimraf ./lib"
   },
