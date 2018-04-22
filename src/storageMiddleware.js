@@ -13,19 +13,19 @@ export function syncViaLocalStorage(action) {
 
 export function validateParams(whitelist, blacklist) {
   if (whitelist && !(whitelist instanceof Array)) {
-    throw Error('Whitelist must be an array');
+    throw Error(`Whitelist must be an array, received ${typeof whitelist}`);
   }
 
   if (blacklist && !(blacklist instanceof Array)) {
-    throw Error('Blacklist must be an array');
+    throw Error(`Blacklist must be an array, received ${typeof blacklist}`);
   }
 
   if (whitelist && whitelist.some(element => (!(typeof element === 'string' || element instanceof RegExp)))) {
-    throw new Error('Whitelist array should contain only values of type string or RegExp');
+    throw new Error(`Whitelist array should contain only values of type string or RegExp, found ${typeof element}`);
   }
 
   if (blacklist && blacklist.some(element => (!(typeof element === 'string' || element instanceof RegExp)))) {
-    throw new Error('Blacklist array should contain only values of type string or RegExp');
+    throw new Error(`Blacklist array should contain only values of type string or RegExp, found ${typeof element}`);
   }
 }
 
