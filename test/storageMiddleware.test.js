@@ -273,122 +273,6 @@ describe('createStorageMiddleware', () => {
     expect(syncAction.mock.calls.length).toBe(0);
   });
 
-  it('throws an exception if provided whitelist is not an array', () => {
-    expect(() => createStorageMiddleware({ whitelist: 'test' })).toThrowError('Whitelist must be an array');
-  });
-
-  it('throws an exception if provided blacklist is not an array', () => {
-    expect(() => createStorageMiddleware({ blacklist: 'test' })).toThrowError('Blacklist must be an array');
-  });
-
-  it('throws an exception if whitelist array contains object', () => {
-    expect(() => createStorageMiddleware({
-      whitelist: [{}],
-    })).toThrowError('Whitelist array should contain only values of type string or RegExp');
-
-    expect(() => createStorageMiddleware(
-      { whitelist: [{}, 'test'] })
-    ).toThrowError('Whitelist array should contain only values of type string or RegExp');
-  });
-
-  it('throws an exception if whitelist array contains array', () => {
-    expect(() => createStorageMiddleware({
-      whitelist: [[]],
-    })).toThrowError('Whitelist array should contain only values of type string or RegExp');
-
-    expect(() => createStorageMiddleware({
-      whitelist: [[], 'test'],
-    })).toThrowError('Whitelist array should contain only values of type string or RegExp');
-  });
-
-  it('throws an exception if whitelist array contains number', () => {
-    expect(() => createStorageMiddleware({
-      whitelist: [1],
-    })).toThrowError('Whitelist array should contain only values of type string or RegExp');
-
-    expect(() => createStorageMiddleware({
-      whitelist: [1, 'test'],
-    })).toThrowError('Whitelist array should contain only values of type string or RegExp');
-  });
-
-  it('throws an exception if whitelist array contains symbol', () => {
-    expect(() => createStorageMiddleware({
-      whitelist: [Symbol()],
-    })).toThrowError('Whitelist array should contain only values of type string or RegExp');
-
-    expect(() => createStorageMiddleware({
-      whitelist: [Symbol(), 'test'],
-    })).toThrowError('Whitelist array should contain only values of type string or RegExp');
-  });
-
-  it('throws an exception if whitelist array contains bool', () => {
-    expect(() => createStorageMiddleware({
-      whitelist: [true],
-    })).toThrowError('Whitelist array should contain only values of type string or RegExp');
-
-    expect(() => createStorageMiddleware({
-      whitelist: [false],
-    })).toThrowError('Whitelist array should contain only values of type string or RegExp');
-
-    expect(() => createStorageMiddleware({
-      whitelist: [false, 'test'],
-    })).toThrowError('Whitelist array should contain only values of type string or RegExp');
-  });
-
-  it('throws an exception if blacklist array contains object', () => {
-    expect(() => createStorageMiddleware({
-      blacklist: [{}],
-    })).toThrowError('Blacklist array should contain only values of type string or RegExp');
-
-    expect(() => createStorageMiddleware({
-      blacklist: [{}, 'test'],
-    })).toThrowError('Blacklist array should contain only values of type string or RegExp');
-  });
-
-  it('throws an exception if blacklist array contains array', () => {
-    expect(() => createStorageMiddleware({
-      blacklist: [[]],
-    })).toThrowError('Blacklist array should contain only values of type string or RegExp');
-
-    expect(() => createStorageMiddleware({
-      blacklist: [[], 'test'],
-    })).toThrowError('Blacklist array should contain only values of type string or RegExp');
-  });
-
-  it('throws an exception if blacklist array contains number', () => {
-    expect(() => createStorageMiddleware({
-      blacklist: [1],
-    })).toThrowError('Blacklist array should contain only values of type string or RegExp');
-
-    expect(() => createStorageMiddleware({
-      blacklist: [1, 'test'],
-    })).toThrowError('Blacklist array should contain only values of type string or RegExp');
-  });
-
-  it('throws an exception if blacklist array contains symbol', () => {
-    expect(() => createStorageMiddleware({
-      blacklist: [Symbol()],
-    })).toThrowError('Blacklist array should contain only values of type string or RegExp');
-
-    expect(() => createStorageMiddleware({
-      blacklist: [Symbol(), 'test'],
-    })).toThrowError('Blacklist array should contain only values of type string or RegExp');
-  });
-
-  it('throws an exception if blacklist array contains bool', () => {
-    expect(() => createStorageMiddleware({
-      blacklist: [true],
-    })).toThrowError('Blacklist array should contain only values of type string or RegExp');
-
-    expect(() => createStorageMiddleware({
-      blacklist: [false],
-    })).toThrowError('Blacklist array should contain only values of type string or RegExp');
-
-    expect(() => createStorageMiddleware({
-      blacklist: [false, 'test'],
-    })).toThrowError('Blacklist array should contain only values of type string or RegExp');
-  });
-
   it('synchronizes actions that are whitelisted by RegExp', () => {
     const action1 = {
       type: 'action1',
@@ -483,5 +367,153 @@ describe('createStorageMiddleware', () => {
     middleware(action4);
     expect(syncAction.mock.calls.length).toBe(1);
     expect(syncAction.mock.calls[0][0]).toBe(action1);
+  });
+
+  /**
+   * Exceptions
+   */
+
+  it('throws an exception if provided whitelist is not an array', () => {
+    expect(() => createStorageMiddleware({ whitelist: 'test' })).toThrowError('Whitelist must be an array');
+  });
+
+  it('throws an exception if provided blacklist is not an array', () => {
+    expect(() => createStorageMiddleware({ blacklist: 'test' })).toThrowError('Blacklist must be an array');
+  });
+
+  it('throws an exception if whitelist array contains object', () => {
+    expect(() => createStorageMiddleware({
+      whitelist: [{}],
+    })).toThrowError('Whitelist array must contain only values of type string or RegExp');
+
+    expect(() => createStorageMiddleware(
+      { whitelist: [{}, 'test'] })
+    ).toThrowError('Whitelist array must contain only values of type string or RegExp');
+  });
+
+  it('throws an exception if whitelist array contains array', () => {
+    expect(() => createStorageMiddleware({
+      whitelist: [[]],
+    })).toThrowError('Whitelist array must contain only values of type string or RegExp');
+
+    expect(() => createStorageMiddleware({
+      whitelist: [[], 'test'],
+    })).toThrowError('Whitelist array must contain only values of type string or RegExp');
+  });
+
+  it('throws an exception if whitelist array contains number', () => {
+    expect(() => createStorageMiddleware({
+      whitelist: [1],
+    })).toThrowError('Whitelist array must contain only values of type string or RegExp');
+
+    expect(() => createStorageMiddleware({
+      whitelist: [1, 'test'],
+    })).toThrowError('Whitelist array must contain only values of type string or RegExp');
+  });
+
+  it('throws an exception if whitelist array contains symbol', () => {
+    expect(() => createStorageMiddleware({
+      whitelist: [Symbol()],
+    })).toThrowError('Whitelist array must contain only values of type string or RegExp');
+
+    expect(() => createStorageMiddleware({
+      whitelist: [Symbol(), 'test'],
+    })).toThrowError('Whitelist array must contain only values of type string or RegExp');
+  });
+
+  it('throws an exception if whitelist array contains bool', () => {
+    expect(() => createStorageMiddleware({
+      whitelist: [true],
+    })).toThrowError('Whitelist array must contain only values of type string or RegExp');
+
+    expect(() => createStorageMiddleware({
+      whitelist: [false],
+    })).toThrowError('Whitelist array must contain only values of type string or RegExp');
+
+    expect(() => createStorageMiddleware({
+      whitelist: [false, 'test'],
+    })).toThrowError('Whitelist array must contain only values of type string or RegExp');
+  });
+
+  it('throws an exception if blacklist array contains object', () => {
+    expect(() => createStorageMiddleware({
+      blacklist: [{}],
+    })).toThrowError('Blacklist array must contain only values of type string or RegExp');
+
+    expect(() => createStorageMiddleware({
+      blacklist: [{}, 'test'],
+    })).toThrowError('Blacklist array must contain only values of type string or RegExp');
+  });
+
+  it('throws an exception if blacklist array contains array', () => {
+    expect(() => createStorageMiddleware({
+      blacklist: [[]],
+    })).toThrowError('Blacklist array must contain only values of type string or RegExp');
+
+    expect(() => createStorageMiddleware({
+      blacklist: [[], 'test'],
+    })).toThrowError('Blacklist array must contain only values of type string or RegExp');
+  });
+
+  it('throws an exception if blacklist array contains number', () => {
+    expect(() => createStorageMiddleware({
+      blacklist: [1],
+    })).toThrowError('Blacklist array must contain only values of type string or RegExp');
+
+    expect(() => createStorageMiddleware({
+      blacklist: [1, 'test'],
+    })).toThrowError('Blacklist array must contain only values of type string or RegExp');
+  });
+
+  it('throws an exception if blacklist array contains symbol', () => {
+    expect(() => createStorageMiddleware({
+      blacklist: [Symbol()],
+    })).toThrowError('Blacklist array must contain only values of type string or RegExp');
+
+    expect(() => createStorageMiddleware({
+      blacklist: [Symbol(), 'test'],
+    })).toThrowError('Blacklist array must contain only values of type string or RegExp');
+  });
+
+  it('throws an exception if blacklist array contains bool', () => {
+    expect(() => createStorageMiddleware({
+      blacklist: [true],
+    })).toThrowError('Blacklist array must contain only values of type string or RegExp');
+
+    expect(() => createStorageMiddleware({
+      blacklist: [false],
+    })).toThrowError('Blacklist array must contain only values of type string or RegExp');
+
+    expect(() => createStorageMiddleware({
+      blacklist: [false, 'test'],
+    })).toThrowError('Blacklist array must contain only values of type string or RegExp');
+  });
+
+  it('throws an expection if syncAction is not a function', () => {
+    expect(() => createStorageMiddleware({
+      syncAction: 'test',
+    })).toThrowError('syncAction must be a function, received string');
+
+    expect(() => createStorageMiddleware({
+      syncAction: { test: 'test' },
+    })).toThrowError('syncAction must be a function, received object');
+
+    expect(() => createStorageMiddleware({
+      syncAction: 1 ,
+    })).toThrowError('syncAction must be a function, received number');
+  });
+
+  it('throws an expection if shouldSynchronize is not a function', () => {
+    expect(() => createStorageMiddleware({
+      shouldSynchronize: 'test',
+    })).toThrowError('shouldSynchronize must be a function, received string');
+
+    expect(() => createStorageMiddleware({
+      shouldSynchronize: { test: 'test' },
+    })).toThrowError('shouldSynchronize must be a function, received object');
+
+    expect(() => createStorageMiddleware({
+      shouldSynchronize: 1 ,
+    })).toThrowError('shouldSynchronize must be a function, received number');
   });
 });

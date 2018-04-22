@@ -11,7 +11,7 @@ export function syncViaLocalStorage(action) {
   localStorage.setItem(SYNC_MESSAGE_KEY, uuid());
 }
 
-export function validateParams(whitelist, blacklist) {
+export function validateParams({ whitelist, blacklist, shouldSynchronize, syncAction }) {
   if (whitelist && !(whitelist instanceof Array)) {
     throw Error(`Whitelist must be an array, received ${typeof whitelist}`);
   }
@@ -21,11 +21,19 @@ export function validateParams(whitelist, blacklist) {
   }
 
   if (whitelist && whitelist.some(element => (!(typeof element === 'string' || element instanceof RegExp)))) {
-    throw new Error(`Whitelist array should contain only values of type string or RegExp, found ${typeof element}`);
+    throw new Error(`Whitelist array must contain only values of type string or RegExp, found ${typeof element}`);
   }
 
   if (blacklist && blacklist.some(element => (!(typeof element === 'string' || element instanceof RegExp)))) {
-    throw new Error(`Blacklist array should contain only values of type string or RegExp, found ${typeof element}`);
+    throw new Error(`Blacklist array must contain only values of type string or RegExp, found ${typeof element}`);
+  }
+
+  if (syncAction && typeof syncAction !== 'function') {
+    throw new Error(`syncAction must be a function, received ${typeof syncAction}`)
+  }
+
+  if (shouldSynchronize && typeof shouldSynchronize !== 'function') {
+    throw new Error(`shouldSynchronize must be a function, received ${typeof shouldSynchronize}`)
   }
 }
 
@@ -36,9 +44,10 @@ export const matchesAnyRegExp = (text, regExpArray) => regExpArray.some(element 
 export default function createStorageMiddleware({
   whitelist,
   blacklist,
+  shouldSynchronize,
   syncAction = syncViaLocalStorage,
 } = {}) {
-  validateParams(whitelist, blacklist);
+  validateParams({ whitelist, blacklist, shouldSynchronize, syncAction });
 
   const whitelistHasRegExp = whitelist && whitelist.some(element => element instanceof RegExp);
   const blacklistHasRegExp = blacklist && blacklist.some(element => element instanceof RegExp);
